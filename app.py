@@ -5,7 +5,7 @@ import os
 import datetime as dt
 import pytz
 import pymongo
-
+from mydb.db import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -41,7 +41,8 @@ def admin_only(f):
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    students = list(class1.find())
+    return render_template('index.html', students=students[:50])
 
 
 if __name__ == '__main__':
