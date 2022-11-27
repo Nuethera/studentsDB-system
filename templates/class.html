@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Greetings, class of {{ sec }}</h1>
+    <table>
+        <thead>
+            <th>Photo</th>
+            <th>Roll Number</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone No</th>
+        </thead>
+        {% for student in students %}
+            <tr>
+                <td>
+                    <img src={{ student['picture']['thumbnail']}} alt="{{student['name']}} image" height="50" width="50">
+                </td>
+                <td> <a href={{ url_for('show_student', roll=student['roll_no']) }} > {{ student['roll_no'] }}</a> </td>
+        <td> {{ student['name'] }} </td>
+        <td> {{ student['email'] }} </td>
+        <td> {{ student['phone'] }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
