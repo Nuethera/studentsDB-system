@@ -165,6 +165,6 @@ cython_debug/
 #.idea/
 
 /test.py
-/templates/index2.html
+/templatesgit /index2.html
 /static/css/style1.css
 /static/js/script1.js

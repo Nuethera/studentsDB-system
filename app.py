@@ -5,11 +5,12 @@ import os
 import datetime as dt
 import pytz
 import pymongo
-from mydb.db import *
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-
+from mydb.db import *
+from user import routes
 
 # decorators
 def loggedin(f):
@@ -19,7 +20,7 @@ def loggedin(f):
             return f(*args, *kwargs)
         else:
             print('Log in please')
-            return redirect('/')
+            return redirect(url_for('login_portal'))
 
     return wrap
 
@@ -45,18 +46,18 @@ def hello_world():
     return render_template('index1.html')
 
 
-@app.route('/i')
-def ind():
-    return render_template('index2.html')
+@app.route('/login/')
+def login_portal():
+    return render_template('login.html')
 
 
-@app.route('/class/<sec>')
+@app.route('/class/<sec>/')
 def show_class(sec):
     students = list(class2.find({'branch':sec}))
-    return render_template('class.html', students=students[:50], sec=sec)
+    return render_template('class.html', students=students[:50], sec=sec, title=f"{sec} Class")
 
 
-@app.route('/student/<roll>')
+@app.route('/student/<roll>/')
 def show_student(roll):
     student = (class2.find_one({'roll_no': int(roll)}))
     return render_template('student.html', student=student)

@@ -10,7 +10,7 @@ class User:
 
     def start_session(self, user):
         del user['password']
-        del user['ObjectID']
+
         session['logged_in'] = True
         session['user'] = user
 
@@ -18,6 +18,7 @@ class User:
 
     def signUp(self):
         user = {
+            "_id": uuid.uuid4().hex,
             "name": request.form.get('name'),
             "email": request.form.get('email'),
             "password": generate_password_hash(request.form.get('password'), method='pbkdf2:sha256', salt_length=8),

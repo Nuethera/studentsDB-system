@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Greetings</h1>
+    <h1>{% if session['logged_in'] %} Hello {{ session['user']['name'] }}
+    {% else %}
+        Hello, Please login
+    {% endif %}</h1>
     <h4><a href={{ url_for('show_class', sec="IT") }}>IT class</a> </h4>
     <h4><a href={{ url_for('show_class', sec="CSE") }}>CSE class</a> </h4>
 
 
 </body>
-</html>
+</html> -->
+
+
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+<h1>{% if session['logged_in'] %} Hello {{ session['user']['name'] }}
+    {% else %}
+        Hello, Please login
+    {% endif %}</h1>
+    <h4><a href={{ url_for('show_class', sec="IT") }}>IT class</a> </h4>
+    <h4><a href={{ url_for('show_class', sec="CSE") }}>CSE class</a> </h4>
+</div>
+{% endblock %}
