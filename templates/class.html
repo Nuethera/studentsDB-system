@@ -7,13 +7,13 @@
 <div class="container">
     <div class="row justify-content-around row-cols-lg-5 row-cols-md-4 row-cols-sm-3">
         {% for student in students %}
-      <div class="card" >
-        <img src={{ student['picture']['large']}} alt="{{student['name']}}" class="card-img-top" alt="...">
+      <div class="card scard" >
+        <img src={{ student['picture']['large']}} alt="{{student['name']}}" class="scard-img-top card-img-top" alt="...">
         <div class="card-body" height="200px">
-          <h5 class="card-title">{{ student['name'] }}</h5>
+          <h5 class="card-title"><strong>{{ student['name'] }}</strong></h5>
           <p class="card-text">{{ student['roll_no'] }} <br>
-            Email: {{ student['email'] }} <br>
-            Phone: {{ student['phone'] }}
+            Father: {{ student['father_name'] }} <br>
+            Gender: {{ student['gender'] }}
           </p>
           <p class="card-text"></p>
           <a href={{ url_for('show_student', roll=student['roll_no']) }} class="btn btn-primary">Expand</a>

@@ -42,25 +42,25 @@ def admin_only(f):
 
 @app.route('/')
 def hello_world():
-    students = list(class2.find())
-    return render_template('index1.html')
+    students = list(class3.find())
+    return render_template('index1.html',title='Welcome')
 
 
 @app.route('/login/')
 def login_portal():
-    return render_template('login.html')
+    return render_template('login.html', title=f"Log In or Sign up")
 
 
 @app.route('/class/<sec>/')
 def show_class(sec):
-    students = list(class2.find({'branch':sec}))
+    students = list(class3.find({'branch': sec}))
     return render_template('class.html', students=students[:50], sec=sec, title=f"{sec} Class")
 
 
 @app.route('/student/<roll>/')
 def show_student(roll):
-    student = (class2.find_one({'roll_no': int(roll)}))
-    return render_template('student.html', student=student)
+    student = (class3.find_one({'roll_no': int(roll)}))
+    return render_template('student.html', student=student, title=f"{student['name']}")
 
 
 if __name__ == '__main__':

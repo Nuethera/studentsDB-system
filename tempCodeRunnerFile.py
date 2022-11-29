@@ -1,5 +1,2 @@
-# c1.update_one({"roll_no": i+12111000},{'$set':{
-    #     'gender':t['gender'],
-    #     'picture': t['picture']
-
-    # }})
+'] = random.choice(names) + s['name'].split()[2]
+  # s['name'] = s['name'].split()[1:]
