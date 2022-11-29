@@ -43,22 +43,28 @@ def admin_only(f):
 @app.route('/')
 def hello_world():
     students = list(class3.find())
-    return render_template('index1.html',title='Welcome')
-
+    return render_template('index.html', title='Welcome')
 
 @app.route('/login/')
 def login_portal():
-    return render_template('login.html', title=f"Log In or Sign up")
+    return render_template('loginPage.html', title=f"Log In or Sign up")
 
 
 @app.route('/class/<sec>/')
 def show_class(sec):
+    if not session['logged_in']:
+        print('Log in please')
+        return redirect(url_for('login_portal'))
+
     students = list(class3.find({'branch': sec}))
     return render_template('class.html', students=students[:50], sec=sec, title=f"{sec} Class")
 
 
 @app.route('/student/<roll>/')
 def show_student(roll):
+    if not session['logged_in']:
+        print('Log in please')
+        return redirect(url_for('login_portal'))
     student = (class3.find_one({'roll_no': int(roll)}))
     return render_template('student.html', student=student, title=f"{student['name']}")
 
